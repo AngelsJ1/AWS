@@ -1,0 +1,51 @@
+# Security & Credentials - NEVER COMMIT
+*.pem
+*.key
+*.pub
+*.id_rsa
+*.id_ed25519
+terraform.tfvars
+*.auto.tfvars
+*.auto.tfvars.json
+*.tfstate
+*.tfstate.*
+*.tfstate.backup
+crash.log
+crash.*.log
+*.tfplan
+.env
+.env.*
+!.env.example
+!*.env.example
+
+# Terraform cache
+.terraform/
+.terraform.lock.hcl
+
+# Rendered files containing secrets
+*.rendered
+policy.json
+trust.json
+*.local.yaml
+*.local.sh
+
+# Python virtual environment & cache
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+dist/
+build/
+
+# Operating System & IDE
+.DS_Store
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# Course scratch folder
+Bullshit/
