@@ -47,5 +47,13 @@ build/
 *.swo
 *~
 
-# Course scratch folder
+# Course documents, reports, templates & presentation files
+*.docx
+*.pdf
+*Report*
+*report*
+*Cheatsheet*
+*cheatsheet*
+fill_report.py
+evidence/
 Bullshit/

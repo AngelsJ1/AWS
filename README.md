@@ -9,7 +9,7 @@
 
 ## 📌 Project Overview
 
-This repository contains the complete Infrastructure as Code (IaC) implementation, verification evidence, and documentation for **Assignment 2: Cloud Infrastructure on AWS**.
+This repository contains the complete Infrastructure as Code (IaC) implementation for **Assignment 2: Cloud Infrastructure on AWS**.
 
 The infrastructure deploys a scalable, secure 3-tier web architecture for the `lnu-notes` application using **Terraform**, **AWS EC2**, **VPC**, **S3**, and **Systems Manager (SSM) Parameter Store**.
 
@@ -54,10 +54,9 @@ The infrastructure deploys a scalable, secure 3-tier web architecture for the `l
    - Eliminated `random_password` from Terraform state, reducing plaintext password occurrences to `0` in `terraform.tfstate`.
    - EC2 instances retrieve the database password at boot time via AWS CLI and IMDSv2 IAM role credentials.
 4. **Drift Detection & Automatic Reconciliation (Task 13):**
-   - Simulated manual security group drift via AWS CLI (`revoke-security-group-ingress`).
-   - Caught instantly by `terraform plan` and restored seamlessly via `terraform apply`.
+   - Caught and reconciled drift via `terraform plan` and `terraform apply`.
 5. **Reproducible Rebuild (Task 14):**
-   - Clean teardown (`terraform destroy`) and redeployment (`terraform apply`) verified in under 4 minutes.
+   - Clean teardown (`terraform destroy`) and redeployment (`terraform apply`) verified from code alone.
 
 ---
 
@@ -65,28 +64,27 @@ The infrastructure deploys a scalable, secure 3-tier web architecture for the `l
 
 ```
 .
-├── 2DV705_A2_Santiago.docx         # Official Course Submission Report (Word)
-├── 2DV705_A2_Santiago.pdf          # Official Course Submission Report (PDF)
-├── Live_Demo_Cheatsheet.md         # Comprehensive Oral Presentation & Live Demo Script
-├── Report_Template.md              # Markdown report source with task breakdown
-├── fill_report.py                  # Report generator script
-├── evidence/                       # High-resolution verification screenshots & cards
-│   ├── architecture_diagram.png    # High-level architecture visualization
-│   ├── web_app_running.png         # Screenshot of running application UI
-│   ├── healthz_ok.png              # Health check endpoint (app, database, s3)
-│   ├── task10_evidence.png         # Database network isolation terminal verification
-│   ├── part4_drift_evidence.png    # Drift detection & reconciliation evidence
-│   └── part5_rebuild_evidence.png  # Clean rebuild verification log
+├── README.md                       # Project documentation & reproduction guide
+├── .gitignore                      # Security & artifact exclusions
 └── lnu-notes/                      # Application code and Terraform infrastructure
     ├── app.py                      # Flask 3-tier application
     ├── schema.sql                  # Database schema
+    ├── requirements.txt            # Python dependencies
     ├── deploy/                     # Cloud-init scripts and systemd configs
+    │   ├── cloud-config-db.yaml
+    │   ├── cloud-config-web.yaml
+    │   ├── db-userdata.sh
+    │   ├── iam-policy-s3.json
+    │   ├── iam-policy-ssm.json
+    │   ├── lnu-notes.service
+    │   └── web-userdata.sh
     └── terraform/                  # Terraform IaC definitions
         ├── main.tf                 # VPC, Subnets, EC2, S3, Security Groups
         ├── task16-ssm.tf           # SSM Parameter Store integration
         ├── variables.tf            # Configurable input variables
         ├── outputs.tf              # Web IP, DB IP, S3 Bucket outputs
-        └── cloud-config-*.tftpl    # Cloud-init templates for Web and DB servers
+        ├── cloud-config-web.yaml.tftpl
+        └── cloud-config-db.yaml.tftpl
 ```
 
 ---
